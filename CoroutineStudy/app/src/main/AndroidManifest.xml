@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoroutineStudy">
         <activity
-            android:name=".views.first.FirstActivity"
+            android:name=".views.scope.ScopeActivity"
             android:exported="false" />
         <activity
             android:name=".views.main.MainActivity"
