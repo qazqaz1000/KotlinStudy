@@ -49,6 +49,7 @@ class MainActivity : BaseActivity() {
             R.id.btn_run4 -> runGlobalScopeParam(Dispatchers.Default)  //Thread[DefaultDispatcher-worker-1,5,main]
             R.id.btn_run5 -> runGlobalScopeAwait()  //Thread[DefaultDispatcher-worker-1,5,main]
             R.id.btn_run6 -> runSuspendFun()  //Thread[DefaultDispatcher-worker-1,5,main]
+            R.id.btn_run7 -> runRunBlocking()  //Thread[DefaultDispatcher-worker-1,5,main]
             R.id.btn_run_activity -> {
 
                 startActivity(Intent(this, ScopeActivity::class.java))
@@ -149,11 +150,29 @@ class MainActivity : BaseActivity() {
     }
     private suspend fun doSomething(){
         print("start")
-        delay(1000)
+        delay(10000)
         print("end")
     }
 
+    /**
+     * runBlocking 은 Thread를 차단함
+     * 때문에 runBlocking을 Main Thread할 경우 ANR 에러가 발생할 수 있음
+     * runBlocking은 지양하되 사용해야할 경우 runRunBlocking() 함수와 같이 Main Thread가 아닌 곳에서 사용해야함
+     */
+    private fun runRunBlocking(){
+        print("start")
+        GlobalScope.launch(Dispatchers.IO) {
+            print("launch hi")
+            runBlocking(Dispatchers.IO) {
+                print("runBlocking hi")
+                delay(10000)
+                print("runBlocking bye")
+            }
+            print("launch bye")
+        }
 
+        print("end")
+    }
 
 
 }

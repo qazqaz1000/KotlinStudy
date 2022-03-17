@@ -126,6 +126,9 @@ class ScopeActivity : BaseActivity(), CoroutineScope, View.OnClickListener {
         print("end")
     }
 
+    /**
+     * job.cancel()을 통해 실행중인 코루틴 취소
+     */
     override fun onDestroy() {
         super.onDestroy()
         print("Activity Scope Cancel")
