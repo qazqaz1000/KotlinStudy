@@ -108,11 +108,16 @@ class MainActivity : BaseActivity() {
         print("start")
         GlobalScope.launch {        //default thread에서 실행
             launch(Dispatchers.Main) {      //main thread에서 실행
-                print("Launch") //print main
+                print("not wait 1") //print main
+                delay(1000)
+                print("not wait 2") //print main
             }
+            print("time")
             delay(1000)
             val value = async(Dispatchers.Main) {      //main thread에서 실행
-                print("I am async") //print main
+                print("I am async1") //print main
+                delay(1000)
+                print("I am async2") //print main
                 "async waiting ..."
             }
             print(value.await())    //print DefaultDispatcher-worker
