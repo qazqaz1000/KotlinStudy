@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 import oz.nckim.coroutinestudy.R
 import oz.nckim.coroutinestudy.views.base.BaseActivity
 import oz.nckim.coroutinestudy.views.scope.ScopeActivity
@@ -50,6 +51,7 @@ class MainActivity : BaseActivity() {
             R.id.btn_run5 -> runGlobalScopeAwait()  //Thread[DefaultDispatcher-worker-1,5,main]
             R.id.btn_run6 -> runSuspendFun()  //Thread[DefaultDispatcher-worker-1,5,main]
             R.id.btn_run7 -> runRunBlocking()  //Thread[DefaultDispatcher-worker-1,5,main]
+            R.id.btn_run8 -> runFlow()  //Thread[DefaultDispatcher-worker-1,5,main]
             R.id.btn_run_activity -> {
 
                 startActivity(Intent(this, ScopeActivity::class.java))
@@ -179,5 +181,37 @@ class MainActivity : BaseActivity() {
         print("end")
     }
 
+//    private fun simple(): Sequence<Int> = sequence { // sequence builder
+//        for (i in 1..3) {
+//            Thread.sleep(1000) // pretend we are computing it
+//            yield(i) // yield next value
+//        }
+//    }
 
+//    private fun runFlow() = runBlocking<Unit> {
+//        simple().forEach { value -> print("$value") }
+//    }
+
+//    private fun runFlow(){
+//        simple().forEach { value -> print("$value") }
+//    }
+
+    fun simple(): Flow<Int> = flow { // flow builder
+        for (i in 1..3) {
+            delay(500) // pretend we are doing something useful here
+            emit(i) // emit next value
+        }
+    }
+
+    private fun runFlow() = runBlocking<Unit> {
+        // Launch a concurrent coroutine to check if the main thread is blocked
+        launch {
+            for (k in 1..3) {
+                println("I'm not blocked $k")
+                delay(500)
+            }
+        }
+        // Collect the flow
+        simple().collect { value -> print("$value") }
+    }
 }
