@@ -37,6 +37,11 @@ class ScopeActivity : BaseActivity(), CoroutineScope, View.OnClickListener {
         runActivityScope()
     }
 
+    private fun observeData(){
+//        viewModel.pp.observe()
+    }
+
+
     /**
      * 생명주기가 Activity와 동일한 코루틴을 실행함
      * 1초간격으로 5번 print 하는 사이에 Activity를 destroy 할 경우 실행중인 코루틴 정지

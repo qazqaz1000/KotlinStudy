@@ -1,18 +1,22 @@
 package oz.nckim.coroutinestudy.views.scope
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import oz.nckim.coroutinestudy.views.base.BaseViewModel
 
 
 class ScopeViewModel : BaseViewModel() {
-    private val job = Job()
 
-    /**
-     * CoroutineScope의 생명주기는 ScopeViewModel를 따라감
-     * viewModel이 소멸되는 시점인 onCleared()에서  job.cancel()을 호출해줘야함
-     */
-    private val viewModelScope = CoroutineScope(Dispatchers.Main + job)
+
+    private var _counter = MutableStateFlow(0)
+    val counter = _counter.asStateFlow()
+
+    private var _pp = MutableLiveData(0)
+    val pp: LiveData<Int> = _pp
 
     fun runViewModelScope(){
         print("start")
@@ -25,9 +29,14 @@ class ScopeViewModel : BaseViewModel() {
         print("end")
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        print("ViewModel Scope Cancel")
-        job.cancel()
+    fun counterPlus(number: Int){
+        _counter.value = _counter.value?.plus(number)
     }
+
+    fun counterPlus2(number: Int) = runBlocking {
+        viewModelScope.launch(Dispatchers.Main) {
+            _pp.value = _pp.value?.plus(number)
+        }
+    }
+
 }
