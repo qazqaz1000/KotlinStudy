@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: rootProject.file("android.gradle")
@@ -19,4 +20,15 @@ dependencies {
     testImplementation UnitTest.JUNIT
     androidTestImplementation AndroidTest.ANDROID_JUNIT
     androidTestImplementation AndroidTest.ESPRESSO
+
+    //viewModels
+    implementation(Androidx.ACTIVITY_KTX)
+
+    //Hilt
+    implementation Hilt.HILT_ANDROID
+    kapt Hilt.HILT_COMPILER
+
+    //LifeCycle
+    implementation(Androidx.LIFECYCLE_VIEWMODEL)
+    implementation(Androidx.LIFECYCLE_LIVEDATA)
 }
