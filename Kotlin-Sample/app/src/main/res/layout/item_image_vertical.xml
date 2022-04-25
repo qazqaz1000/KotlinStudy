@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="image"
+            type="com.nckim.domain.model.ImageModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            app:url="@{image.download_url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="author : "
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_size"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{image.author}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_author"
+            app:layout_constraintStart_toEndOf="@+id/tv_author"
+            app:layout_constraintTop_toTopOf="@+id/tv_author" />
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="size : "
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_url"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/tv_author"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(image.width)}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_size"
+            app:layout_constraintStart_toEndOf="@+id/tv_size"
+            app:layout_constraintTop_toTopOf="@+id/tv_size" />
+
+
+        <TextView
+            android:id="@+id/tv_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="url : "
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/tv_size"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{image.url}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_url"
+            app:layout_constraintStart_toEndOf="@+id/tv_url"
+            app:layout_constraintTop_toTopOf="@+id/tv_url" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

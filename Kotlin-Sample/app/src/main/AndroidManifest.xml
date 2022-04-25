@@ -15,7 +15,7 @@
         android:theme="@style/Theme.KotlinSample" >
 
         <activity
-            android:name=".views.screen.NckimMainActivity"
+            android:name=".views.screen.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

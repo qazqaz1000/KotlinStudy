@@ -10,17 +10,17 @@ apply from: rootProject.file("android.gradle")
 dependencies {
     implementation project(":domain")
 
-    implementation Kotlin.KOTLIN_STDLIB
+    implementation(Kotlin.KOTLIN_STDLIB)
 
     //Hilt
-    implementation Hilt.HILT_ANDROID
-    kapt Hilt.HILT_COMPILER
+    implementation(Hilt.HILT_ANDROID)
+    kapt(Hilt.HILT_COMPILER)
 
-    implementation Square.RETROFIT2_RETROFIT
-    implementation Square.RETROFIT2_ADAPTER
-    implementation Square.RETROFIT2_GSON
+    implementation(Square.RETROFIT2_RETROFIT)
+    implementation(Square.RETROFIT2_ADAPTER)
+    implementation(Square.RETROFIT2_GSON)
 
-    implementation Square.OKHTTP3_OKHTTP
-    implementation Square.OKHTTP3_LOGGING
+    implementation(Square.OKHTTP3_OKHTTP)
+    implementation(Square.OKHTTP3_LOGGING)
 
 }

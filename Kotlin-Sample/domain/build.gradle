@@ -9,12 +9,12 @@ apply from: rootProject.file("android.gradle")
 
 
 dependencies {
-    implementation Kotlin.KOTLIN_STDLIB
+    implementation(Kotlin.KOTLIN_STDLIB)
 
     //Hilt
-    implementation Hilt.HILT_ANDROID
-    kapt Hilt.HILT_COMPILER
+    implementation(Hilt.HILT_ANDROID)
+    kapt(Hilt.HILT_COMPILER)
 
     //Gson
-    implementation Square.RETROFIT2_GSON
+    implementation(Square.RETROFIT2_GSON)
 }

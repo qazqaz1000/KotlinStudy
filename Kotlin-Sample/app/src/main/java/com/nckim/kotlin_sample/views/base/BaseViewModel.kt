@@ -14,6 +14,7 @@ abstract class BaseViewModel : ViewModel(){
 
     override fun onCleared() {
         super.onCleared()
+
         job.cancel()
     }
 }

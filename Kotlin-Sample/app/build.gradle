@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 apply from: rootProject.file("android.gradle")
@@ -11,24 +12,32 @@ dependencies {
     implementation project(":data")
     implementation project(":domain")
 
-    implementation Kotlin.KOTLIN_STDLIB
+    implementation(Kotlin.KOTLIN_STDLIB)
 
-    implementation Androidx.CORE_KTX
-    implementation Androidx.APP_COMPAT
-    implementation Google.MATERIAL
-    implementation Androidx.CONSTRAINT_LAYOUT
-    testImplementation UnitTest.JUNIT
-    androidTestImplementation AndroidTest.ANDROID_JUNIT
-    androidTestImplementation AndroidTest.ESPRESSO
+    implementation(Androidx.CORE_KTX)
+    implementation(Androidx.APP_COMPAT)
+    implementation(Google.MATERIAL)
+    implementation(Androidx.CONSTRAINT_LAYOUT)
+    testImplementation(UnitTest.JUNIT)
+    androidTestImplementation(AndroidTest.ANDROID_JUNIT)
+    androidTestImplementation(AndroidTest.ESPRESSO)
 
     //viewModels
     implementation(Androidx.ACTIVITY_KTX)
 
     //Hilt
-    implementation Hilt.HILT_ANDROID
-    kapt Hilt.HILT_COMPILER
+    implementation(Hilt.HILT_ANDROID)
+    kapt(Hilt.HILT_COMPILER)
 
     //LifeCycle
     implementation(Androidx.LIFECYCLE_VIEWMODEL)
     implementation(Androidx.LIFECYCLE_LIVEDATA)
+
+    //Navigation
+    implementation(Androidx.NAVIGATION_FRAGMENT)
+    implementation(Androidx.NAVIGATION_UI)
+
+    //Glide
+    implementation(Glide.GLIDE)
+    kapt(Glide.GLIDE_COMPILER)
 }
