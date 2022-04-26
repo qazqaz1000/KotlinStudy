@@ -18,11 +18,15 @@ class MainViewModel @Inject constructor(
     private var _images = MutableLiveData<List<ImageModel>>()
     val images: LiveData<List<ImageModel>> = _images
 
+    //Image Skeleton
+    private var _isImageLoading = MutableLiveData(false)
+    val isImageLoading: LiveData<Boolean> = _isImageLoading
+
     fun requestImage(){
         viewModelScoped.launch {
-
+            _isImageLoading.value = true
             val list = getImageUseCase.invoke()
-
+            _isImageLoading.value = false
             println(list.toString())
 
             _images.value = list

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.nckim.kotlin_sample.views.screen.MainViewModel" />
@@ -29,5 +30,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button"
             app:setItems="@{viewModel.images}" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/skeleton_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.isImageLoading() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <com.nckim.kotlin_sample.views.view.SkeletonItemVerticalView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.nckim.kotlin_sample.views.view.SkeletonItemVerticalView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.nckim.kotlin_sample.views.view.SkeletonItemVerticalView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.nckim.kotlin_sample.views.view.SkeletonItemVerticalView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.nckim.kotlin_sample.views.view.SkeletonItemVerticalView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
