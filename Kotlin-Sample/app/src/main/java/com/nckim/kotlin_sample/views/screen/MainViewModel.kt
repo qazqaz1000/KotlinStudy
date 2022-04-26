@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getImageUseCase: GetImageUseCase
@@ -22,6 +23,12 @@ class MainViewModel @Inject constructor(
     private var _isImageLoading = MutableLiveData(false)
     val isImageLoading: LiveData<Boolean> = _isImageLoading
 
+    private var _navigateToDetailIndex = MutableLiveData<Int>()
+    val navigateToDetailIndex: LiveData<Int> = _navigateToDetailIndex
+
+    private var _navigateToDetailImageModel = MutableLiveData<ImageModel>()
+    val navigateToDetailImageModel: LiveData<ImageModel> = _navigateToDetailImageModel
+
     fun requestImage(){
         viewModelScoped.launch {
             _isImageLoading.value = true
@@ -31,5 +38,10 @@ class MainViewModel @Inject constructor(
 
             _images.value = list
         }
+    }
+
+    fun onImageItemClick(imageModel: ImageModel, position: Int){
+        _navigateToDetailIndex.value = position
+        _navigateToDetailImageModel.value = imageModel
     }
 }

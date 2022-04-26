@@ -5,7 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
 
-    <fragment
+    <keep_state_fragment
         android:id="@+id/mainFragment"
         android:name="com.nckim.kotlin_sample.views.screen.MainFragment"
         android:label="fragment_main"
@@ -13,10 +13,30 @@
         <action
             android:id="@+id/action_mainFragment_to_imageListFragment"
             app:destination="@id/imageListFragment" />
-    </fragment>
+    </keep_state_fragment>
 
-    <fragment
+    <keep_state_fragment
         android:id="@+id/imageListFragment"
         android:name="com.nckim.kotlin_sample.views.screen.ImageListFragment"
-        android:label="ImageListFragment" />
+        android:label="ImageListFragment" >
+        <action
+            android:id="@+id/action_imageListFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment" />
+        <action
+            android:id="@+id/action_imageListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </keep_state_fragment>
+
+    <keep_state_fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="com.nckim.kotlin_sample.views.screen.ImageDetailFragment"
+        android:label="ImageDetailFragment" >
+        <argument
+            android:name="index"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_imageDetailFragment_to_imageListFragment"
+            app:destination="@id/imageListFragment" />
+    </keep_state_fragment>
 </navigation>

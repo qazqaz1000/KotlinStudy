@@ -1,9 +1,11 @@
 package com.nckim.kotlin_sample.views.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -22,6 +24,18 @@ abstract class BaseFragment <B: ViewDataBinding>(@LayoutRes val layoutId: Int) :
     val viewModel: MainViewModel by activityViewModels()
 
     lateinit var navController: NavController
+
+    private lateinit var callback: OnBackPressedCallback
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                onBackButtonPressed()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,9 +66,16 @@ abstract class BaseFragment <B: ViewDataBinding>(@LayoutRes val layoutId: Int) :
 
     abstract fun observeViewModels()
 
+    abstract fun onBackButtonPressed()
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
     }
 
 }
