@@ -2,9 +2,11 @@ package com.nckim.kotlin_sample.views.screen
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.Keep
 import androidx.navigation.fragment.navArgs
 import com.nckim.kotlin_sample.R
 import com.nckim.kotlin_sample.databinding.FragmentImageDetailBinding
+import com.nckim.kotlin_sample.utils.KeepStateNavigator
 import com.nckim.kotlin_sample.views.base.BaseFragment
 
 
@@ -28,6 +30,10 @@ class ImageDetailFragment : BaseFragment<FragmentImageDetailBinding>(R.layout.fr
 
     override fun onBackButtonPressed() {
         val action = ImageDetailFragmentDirections.actionImageDetailFragmentToImageListFragment()
-        navController.navigate(action)
+        navController.navigate(R.id.imageListFragment)
+
+//        val nav =  navController.navigatorProvider.getNavigator<KeepStateNavigator>()
+//        nav.navigate(nav.createDestination(), null, null, null)
+//        println(navController.navigatorProvider.navigators.toString())
     }
 }

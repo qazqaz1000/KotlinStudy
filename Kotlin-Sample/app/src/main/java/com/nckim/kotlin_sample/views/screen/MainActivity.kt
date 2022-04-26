@@ -18,7 +18,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        val navController = navHostFragment.findNavController()
+        navController = navHostFragment.findNavController()
 
         /** KeepStateNavigator navController에 추가 */
         val navigator = KeepStateNavigator(this , navHostFragment.childFragmentManager, R.id.nav_host_fragment_container)

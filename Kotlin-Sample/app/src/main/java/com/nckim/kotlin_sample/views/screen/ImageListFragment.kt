@@ -52,6 +52,6 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>(R.layout.fragme
 
     override fun onBackButtonPressed() {
         val action = ImageListFragmentDirections.actionImageListFragmentToMainFragment()
-        navController.navigate(action)
+        navController.navigate(R.id.action_imageListFragment_to_mainFragment)
     }
 }

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.nckim.kotlin_sample.views.screen.MainActivity
 import com.nckim.kotlin_sample.views.screen.MainViewModel
 
 abstract class BaseFragment <B: ViewDataBinding>(@LayoutRes val layoutId: Int) : Fragment() {
@@ -51,7 +52,8 @@ abstract class BaseFragment <B: ViewDataBinding>(@LayoutRes val layoutId: Int) :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = Navigation.findNavController(view)
+//        navController = Navigation.findNavController(view)
+        navController = (activity as MainActivity).navController
 
         initializeViews()
 
