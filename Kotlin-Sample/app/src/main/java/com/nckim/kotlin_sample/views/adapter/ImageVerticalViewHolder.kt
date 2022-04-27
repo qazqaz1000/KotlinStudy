@@ -2,13 +2,13 @@ package com.nckim.kotlin_sample.views.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.nckim.domain.model.ImageModel
 import com.nckim.kotlin_sample.databinding.ItemImageVerticalBinding
+import com.nckim.kotlin_sample.views.adapter.base.BaseViewHolder
 
-class ImageVerticalViewHolder(private val binding: ItemImageVerticalBinding) : RecyclerView.ViewHolder(binding.root) {
+class ImageVerticalViewHolder(private val binding: ItemImageVerticalBinding) : BaseViewHolder(binding.root) {
 
-    fun bind(item: ImageModel, listener: (ImageModel, Int) -> Unit){
+    override fun bind(item: ImageModel, listener: (ImageModel, Int) -> Unit){
         itemView.setOnClickListener{ listener(item, layoutPosition) }
 
         binding.image = item

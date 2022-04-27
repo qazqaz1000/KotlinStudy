@@ -41,6 +41,10 @@ dependencies {
     implementation(Glide.GLIDE)
     kapt(Glide.GLIDE_COMPILER)
 
+    //Skeleton View
     implementation "com.facebook.shimmer:shimmer:0.5.0"
+
+    //ViewPager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
 }

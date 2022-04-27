@@ -4,6 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.nckim.domain.model.ImageModel
 import com.nckim.kotlin_sample.R
@@ -22,6 +23,13 @@ fun bindImage(imageView: ImageView, url: String){
 fun setItems(recyclerView: RecyclerView, items: List<ImageModel>?){
     items?.let {
         (recyclerView.adapter as ImageListAdapter).submitList(it)
+    }
+}
+
+@BindingAdapter("setItems")
+fun setItems(viewPager2: ViewPager2, items: List<ImageModel>?){
+    items?.let {
+        (viewPager2.adapter as ImageListAdapter).submitList(it)
     }
 }
 

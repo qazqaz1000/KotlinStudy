@@ -2,11 +2,10 @@ package com.nckim.kotlin_sample.views.screen
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.Keep
 import androidx.navigation.fragment.navArgs
 import com.nckim.kotlin_sample.R
 import com.nckim.kotlin_sample.databinding.FragmentImageDetailBinding
-import com.nckim.kotlin_sample.utils.KeepStateNavigator
+import com.nckim.kotlin_sample.views.adapter.ImageListAdapter
 import com.nckim.kotlin_sample.views.base.BaseFragment
 
 
@@ -14,9 +13,14 @@ class ImageDetailFragment : BaseFragment<FragmentImageDetailBinding>(R.layout.fr
 
     private val args: ImageDetailFragmentArgs by navArgs()
 
+    private val imageListAdapter = ImageListAdapter()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.imageModel = viewModel.navigateToDetailImageModel.value
+        binding.viewModel = viewModel
+        imageListAdapter.type = ImageListAdapter.ImageViewHolder.ImageDetail
+        binding.detailViewpager.adapter = imageListAdapter
     }
 
     override fun initializeViews() {

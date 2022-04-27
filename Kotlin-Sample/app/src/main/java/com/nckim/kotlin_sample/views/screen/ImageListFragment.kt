@@ -20,6 +20,7 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>(R.layout.fragme
     }
 
     override fun initializeViews(){
+        imageListAdapter.type = ImageListAdapter.ImageViewHolder.ImageList
         binding.recyclerView.adapter = imageListAdapter
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
