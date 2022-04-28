@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: rootProject.file("android.gradle")
+
+
+dependencies {
+    implementation(Kotlin.KOTLIN_STDLIB)
+
+    //Hilt
+    implementation(Hilt.HILT_ANDROID)
+    kapt(Hilt.HILT_COMPILER)
+
+    //Gson
+    implementation(Square.RETROFIT2_GSON)
+}
