@@ -26,11 +26,12 @@ fun setItems(recyclerView: RecyclerView, items: List<ImageModel>?){
     }
 }
 
-@BindingAdapter("setItems")
-fun setItems(viewPager2: ViewPager2, items: List<ImageModel>?){
+@BindingAdapter("setItems", "setCurrentItem")
+fun setItems(viewPager2: ViewPager2, items: List<ImageModel>?, position: Int){
     items?.let {
         (viewPager2.adapter as ImageListAdapter).submitList(it)
     }
+    viewPager2.setCurrentItem(position, false)
 }
 
 @BindingAdapter("imageW", "imageH")
